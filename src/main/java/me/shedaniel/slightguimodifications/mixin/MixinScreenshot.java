@@ -21,14 +21,14 @@ public abstract class MixinScreenshot {
         return null;
     }
     
-    @ModifyVariable(method = "_grab", at = @At(value = "HEAD"), ordinal = 0)
-    private static Consumer<Component> saveScreenshotInner(Consumer<Component> textConsumer) {
-        return text -> {
-            if (SlightGuiModifications.getGuiConfig().satisfyingScreenshots)
-                return;
-            textConsumer.accept(text);
-        };
-    }
+    // @ModifyVariable(method = "_grab", at = @At(value = "HEAD"), ordinal = 0)
+    // private static Consumer<Component> saveScreenshotInner(Consumer<Component> textConsumer) {
+    //     return text -> {
+    //         if (SlightGuiModifications.getGuiConfig().satisfyingScreenshots)
+    //             return;
+    //         textConsumer.accept(text);
+    //     };
+    // }
     
     @Inject(method = "_grab", at = @At(value = "RETURN"))
     private static void preScreenshotConsumer(File gameDirectory, String fileName,  RenderTarget framebuffer, Consumer<Component> messageReceiver, CallbackInfo ci) {
